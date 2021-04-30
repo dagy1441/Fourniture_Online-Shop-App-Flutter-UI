@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fourniture_online_shop_app_flutter_ui/components/text_title.dart';
-import 'package:fourniture_online_shop_app_flutter_ui/models/Categories.dart';
+import 'package:fourniture_online_shop_app_flutter_ui/screen/home/components/recommanded_product.dart';
 import 'package:fourniture_online_shop_app_flutter_ui/services/fetchCategories.dart';
-import 'package:fourniture_online_shop_app_flutter_ui/utils/constants.dart';
+import 'package:fourniture_online_shop_app_flutter_ui/services/fetchProducts.dart';
 import 'package:fourniture_online_shop_app_flutter_ui/utils/size_config.dart';
 
 import 'categories.dart';
-import 'category_card.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -29,6 +28,21 @@ class Body extends StatelessWidget {
               builder: (context, snapshot) => snapshot.hasData
                   ? Categories(categories: snapshot.data)
                   : Center(child: Image.asset("assets/ripple.gif")),
+            ),
+            Divider(height: 5),
+            Padding(
+              padding: EdgeInsets.all(defaultSize * 2), //20
+              child: TextTitle(
+                title: "Recommands for you",
+              ),
+            ),
+            FutureBuilder(
+              future: fetchProducts(),
+              builder: (context, snapshot) {
+                return snapshot.hasData
+                    ? RecommandedProducts(products: snapshot.data)
+                    : Center(child: Image.asset('assets/ripple.gif'));
+              },
             ),
           ],
         ),
