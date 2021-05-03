@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fourniture_online_shop_app_flutter_ui/components/text_title.dart';
+import 'package:fourniture_online_shop_app_flutter_ui/screen/home/components/bottom_navigation.dart';
 import 'package:fourniture_online_shop_app_flutter_ui/screen/home/components/recommanded_product.dart';
 import 'package:fourniture_online_shop_app_flutter_ui/services/fetchCategories.dart';
 import 'package:fourniture_online_shop_app_flutter_ui/services/fetchProducts.dart';
 import 'package:fourniture_online_shop_app_flutter_ui/utils/size_config.dart';
+
+import 'package:splashy_bottom_app_bar/splashy_bottom_app_bar.dart';
 
 import 'categories.dart';
 
@@ -44,6 +47,7 @@ class Body extends StatelessWidget {
                     : Center(child: Image.asset('assets/ripple.gif'));
               },
             ),
+            //BottomNavigation()
           ],
         ),
       ),

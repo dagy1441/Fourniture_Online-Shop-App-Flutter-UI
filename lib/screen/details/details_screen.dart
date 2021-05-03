@@ -14,16 +14,18 @@ class DetailsScreen extends StatelessWidget {
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: kSecondaryColor,
-      appBar: buildAppBar(),
+      appBar: buildAppBar(context),
       body: Body(product: product),
     );
   }
 
-  AppBar buildAppBar() {
+  AppBar buildAppBar(BuildContext context) {
     return AppBar(
       leading: IconButton(
         icon: SvgPicture.asset("assets/icons/arrow-long-left.svg"),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pop(context);
+        },
       ),
       actions: [
         IconButton(
