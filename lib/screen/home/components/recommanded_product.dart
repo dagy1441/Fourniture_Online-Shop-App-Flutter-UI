@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fourniture_online_shop_app_flutter_ui/models/Product.dart';
+import 'package:fourniture_online_shop_app_flutter_ui/screen/details/details_screen.dart';
 import 'package:fourniture_online_shop_app_flutter_ui/screen/home/components/product_card.dart';
 import 'package:fourniture_online_shop_app_flutter_ui/utils/size_config.dart';
 
@@ -30,7 +31,16 @@ class RecommandedProducts extends StatelessWidget {
         ),
         itemBuilder: (context, index) => ProductCard(
           product: products[index],
-          doPress: () {},
+          doPress: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailsScreen(
+                  product: products[index],
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
