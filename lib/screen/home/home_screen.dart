@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fourniture_online_shop_app_flutter_ui/models/Categories.dart';
 import 'package:fourniture_online_shop_app_flutter_ui/screen/home/components/body.dart';
+import 'package:fourniture_online_shop_app_flutter_ui/screen/home/components/bottom_navigation.dart';
 import 'package:fourniture_online_shop_app_flutter_ui/utils/constants.dart';
 import 'package:fourniture_online_shop_app_flutter_ui/utils/size_config.dart';
 

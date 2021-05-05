@@ -47,7 +47,7 @@ class Body extends StatelessWidget {
                     : Center(child: Image.asset('assets/ripple.gif'));
               },
             ),
-            //BottomNavigation()
+            BottomNavigation()
           ],
         ),
       ),

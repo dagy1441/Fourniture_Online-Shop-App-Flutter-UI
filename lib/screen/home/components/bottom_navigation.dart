@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:fourniture_online_shop_app_flutter_ui/utils/constants.dart';
+import 'package:fourniture_online_shop_app_flutter_ui/utils/size_config.dart';
 
 import 'package:splashy_bottom_app_bar/splashy_bottom_app_bar.dart';
 
@@ -10,53 +13,73 @@ class BottomNavigation extends StatefulWidget {
 }
 
 class _BottomNavigationState extends State<BottomNavigation> {
-  int _currentIndex = 0;
-  final List<BarItem> barItems = [
-    BarItem(
-      text: "Home",
-      iconData: Icons.home,
-      color: Colors.indigo,
-    ),
-    BarItem(
-      text: "Likes",
-      iconData: Icons.favorite_border,
-      color: Colors.pinkAccent,
-    ),
-    BarItem(
-      text: "Search",
-      iconData: Icons.search,
-      color: Colors.yellow.shade900,
-    ),
-    BarItem(
-      text: "Profile",
-      iconData: Icons.person_outline,
-      color: Colors.teal,
-    ),
-    BarItem(
-      text: "Profile",
-      iconData: Icons.add_circle_outline,
-      color: Colors.redAccent,
-    )
+  int selectedIndex = 0;
+
+  List<NavigatorItem> items = [
+    NavigatorItem(Icon(Icons.home_outlined), Text("Home")),
+    NavigatorItem(Icon(Icons.search), Text("Search")),
+    NavigatorItem(Icon(Icons.shopping_bag_outlined), Text("Bag")),
+    NavigatorItem(Icon(Icons.person_outline), Text("Profile")),
   ];
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: AnimatedContainer(
-        curve: Curves.easeIn,
-        duration: Duration(milliseconds: 500),
-        //color: barItems[_currentIndex].color,
-      ),
-      bottomNavigationBar: SplashyBottomAppBar(
-        iconSize: MediaQuery.of(context).size.width * 0.08,
-        //currentIndex: _currentIndex,
-        items: barItems,
-        // onTap: (index) {
-        //   setState(() {
-        //     _currentIndex = index;
-        //   });
-        // },
+  Widget _buildItem(NavigatorItem item, bool isSelected) {
+    return Container(
+      height: double.maxFinite,
+      width: isSelected ? 120 : 50,
+      decoration: isSelected
+          ? BoxDecoration(
+              color: kPrimaryColor,
+              borderRadius: BorderRadius.all(Radius.circular(50)),
+            )
+          : null,
+      child: Row(
+        children: [
+          IconTheme(
+            data: IconThemeData(size: 25),
+            child: item.icon,
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 8),
+            child: isSelected ? item.title : Container(),
+          ),
+        ],
       ),
     );
   }
+
+  @override
+  Widget build(BuildContext context) {
+    double defaultSize = SizeConfig.defaultSize;
+    return SafeArea(
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 60,
+        //color: Colors.amber,
+        child: Padding(
+          padding: EdgeInsets.only(left: 38, right: 38, bottom: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: items.map((item) {
+              var itemIndex = items.indexOf(item);
+              return GestureDetector(
+                child: _buildItem(item, selectedIndex == itemIndex),
+                onTap: () {
+                  setState(() {
+                    selectedIndex = itemIndex;
+                  });
+                },
+              );
+            }).toList(),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class NavigatorItem {
+  final Icon icon;
+  final Text title;
+
+  NavigatorItem(this.icon, this.title);
 }
