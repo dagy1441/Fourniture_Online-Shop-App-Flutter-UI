@@ -14,10 +14,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
   int selectedIndex = 0;
 
   List<NavigatorItem> items = [
-    NavigatorItem(Icon(Icons.home), Text("Home")),
-    NavigatorItem(Icon(Icons.search), Text("Search")),
-    NavigatorItem(Icon(Icons.shopping_bag), Text("Bag")),
-    NavigatorItem(Icon(Icons.person), Text("Profile")),
+    NavigatorItem(Icon(Icons.home), Text("Home"), kPrimaryColor),
+    NavigatorItem(Icon(Icons.search), Text("Search"), Colors.pinkAccent),
+    NavigatorItem(Icon(Icons.shopping_bag), Text("Bag"), Colors.amberAccent),
+    NavigatorItem(Icon(Icons.person), Text("Profile"), Colors.cyanAccent),
   ];
 
   Widget _buildItem(NavigatorItem item, bool isSelected) {
@@ -28,7 +28,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
       width: isSelected ? 125 : 50,
       decoration: isSelected
           ? BoxDecoration(
-              color: kPrimaryColor,
+              color: item.color,
               borderRadius: BorderRadius.all(Radius.circular(50)),
             )
           : null,
@@ -104,6 +104,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
 class NavigatorItem {
   final Icon icon;
   final Text title;
+  final Color color;
 
-  NavigatorItem(this.icon, this.title);
+  NavigatorItem(this.icon, this.title, this.color);
 }
