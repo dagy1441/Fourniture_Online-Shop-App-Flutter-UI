@@ -14,8 +14,8 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double defaultSize = SizeConfig.defaultSize;
-    return SingleChildScrollView(
-      child: SafeArea(
+    return SafeArea(
+      child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -47,7 +47,6 @@ class Body extends StatelessWidget {
                     : Center(child: Image.asset('assets/ripple.gif'));
               },
             ),
-            BottomNavigation()
           ],
         ),
       ),
